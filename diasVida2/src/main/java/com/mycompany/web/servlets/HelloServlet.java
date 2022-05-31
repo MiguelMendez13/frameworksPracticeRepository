@@ -26,6 +26,7 @@ public class HelloServlet extends HttpServlet {
       //PrintWriter out = response.getWriter();
         request.setAttribute("dias", "0");
         request.setAttribute("dia", "1990-01-01");
+        request.setAttribute("selectRest", "<br>Datos en la bd:");
         RequestDispatcher respuesta =  request.getRequestDispatcher("/indexTemplate.jsp");
         respuesta.forward(request, response);
 
@@ -42,16 +43,18 @@ public class HelloServlet extends HttpServlet {
         int dia=Integer.valueOf(romper[2]),mes=Integer.valueOf(romper[1]),anio=Integer.valueOf(romper[0]);
         DiasReturn dias = new DiasReturn(dia, mes, anio);
         int total = dias.contarDias();
-
-
-
-        
+        String select="<br>Datos en la bd:c";
         try {               
-            Connection conn = bdConexion.getConnection();
-            //Connection conn = Conexion.getConnection();   
-            PreparedStatement pst= conn.prepareStatement("INSERT INTO Fecha VALUES(?)");
-            pst.setString(1, String.valueOf(total));
-            pst.execute();
+            System.out.println(sql.crear(total));
+            System.out.println(sql.borrar());
+            System.out.println(sql.cambiar());
+            String[] leer=sql.leer();
+            System.out.println(leer[0]);
+            for (int i = 1; i < leer.length; i++){
+                if (leer[i]==null){break;}
+                System.out.println(leer[i]);
+                select+="<br>* "+leer[i];
+            }
 
         }catch(Exception e){
             System.out.println(e);
@@ -66,9 +69,10 @@ public class HelloServlet extends HttpServlet {
 
         request.setAttribute("dias", String.valueOf(total));
         request.setAttribute("dia", fecha);
+        request.setAttribute("selectRest", select);
         RequestDispatcher respuesta =  request.getRequestDispatcher("/indexTemplate.jsp");
         respuesta.forward(request, response);
 
 
     }
-  }
+}

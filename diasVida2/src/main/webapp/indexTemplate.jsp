@@ -47,5 +47,7 @@
     </form>
     <button onclick="add()">verificarFetch</button>
     <p id="resultado">${dias} dias vividos</p>
+
+    <p id="">${selectRest}</p>
 </body>
 </html>
