@@ -1,0 +1,16 @@
+<form action="#" th:action="@{/test}" th:object="${test}" method="post">
+    Nombre: <input type="text" th:field="*{nombre}">
+    Ap paterno: <input type="text" th:field="*{apellido_Pat}">
+    Ap materno: <input type="text" th:field="*{apellido_Mat}"><br>
+    Fecha nacimiento: <input type="text" th:field="*{fecha_Nacimiento}">
+    Telefono: <input type="text" th:field="*{telefono}">
+    Correo: <input type="text" th:field="*{correo}"><br>
+    contrasena: <input type="text" th:field="*{contrasena}">
+    tipo: <input type="text" th:field="*{tipo}">
+    delegacion: <input type="text" th:field="*{delegacion}"><br>
+    colonia: <input type="text" th:field="*{colonia}">
+    calle: <input type="text" th:field="*{calle}">
+    numExt: <input type="text" th:field="*{numExt}"><br>
+    numInt: <input type="text" th:field="*{numInt}">
+    <input type="submit" value="enviar">
+</form>
